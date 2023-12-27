@@ -8,14 +8,15 @@ export class Damka extends Figure {
   canMove(startCell, endCell) {
     const dx = startCell.x - endCell.x
     const dy = startCell.y - endCell.y
+
     if (startCell.board.canMultiBeat) return false
-    const diagonalMove = this.checkEmptyDiagonal(
+
+    return this.checkEmptyDiagonal(
       startCell,
       endCell,
       Math.abs(dx),
       Math.abs(dy),
     )
-    return diagonalMove
   }
 
   isFreeCell(endCell) {
@@ -27,26 +28,38 @@ export class Damka extends Figure {
   }
 
   checkEmptyDiagonal(startCell, endCell, dx, dy) {
-    if (dy !== dx) return false
+    if (dy !== dx) {
+      return false
+    }
 
-    const x = endCell.x > startCell.x ? 1 : -1
-    const y = endCell.y > startCell.y ? 1 : -1
+    const xDirection = endCell.x > startCell.x ? 1 : -1
+    const yDirection = endCell.y > startCell.y ? 1 : -1
     const listEnemy = []
-    if (!this.isFreeCell(endCell)) return false
+
     for (let i = 1; i < dx; i++) {
-      const currentFiruge =
-        this.cells[i * y + startCell.y][i * x + startCell.x].figure
-      if (currentFiruge) {
-        listEnemy.push(currentFiruge.color)
-        if (listEnemy.length > 1) return false
+      const currentFigure =
+        this.cells[i * yDirection + startCell.y][i * xDirection + startCell.x]
+          .figure
+
+      if (currentFigure) {
+        listEnemy.push(currentFigure.color)
+
+        if (listEnemy.length > 1) {
+          return false
+        }
       }
     }
 
-    if (listEnemy[0] !== startCell.figure.color) {
+    if (listEnemy.length === 1 && listEnemy[0] !== startCell.figure.color) {
       for (let i = 1; i < dx; i++) {
-        this.cells[i * y + startCell.y][i * x + startCell.x].figure = null
+        const cell =
+          this.cells[i * yDirection + startCell.y][i * xDirection + startCell.x]
+        cell.figure = null
       }
+
       return true
     }
+
+    return false
   }
 }

@@ -17,21 +17,12 @@ export class Pawn extends Figure {
     return canBeat || canMove
   }
 
-  // Перевірка наявності фігури супротивника і можливості з'їсти її.
   canBeat(startCell, endCell, dx, dy) {
-    if (
-      this.isEnemyFigure(startCell, endCell) &&
-      dx == 1 &&
-      Math.abs(dy) == 1
-    ) {
-      return true
-    }
-    return false
+    return this.isEnemyFigure(startCell, endCell) && dx === 1 && Math.abs(dy) === 1;
   }
 
   canDoMove(startCell, endCell, dx, dy) {
     if (startCell.figure.color === COLORS.white && dy < 0 && !endCell.figure) {
-      //Хід білого пішака вперед на одну клітку або дві, якщо це перший хід.
       return (
         (dx == 0 && dy == -1) ||
         (dx == 0 &&
@@ -43,7 +34,6 @@ export class Pawn extends Figure {
       dy > 0 &&
       !endCell.figure
     ) {
-      //Хід чорного пішака вперед на одну клітку або дві, якщо це перший хід.
       return (
         (dx == 0 && dy == 1) ||
         (dx == 0 &&

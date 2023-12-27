@@ -20,22 +20,28 @@ export default class Board {
 
   create(x, y) {
     const cells = []
+
     for (let j = 0; j < y; j++) {
       const row = []
+
       for (let i = 0; i < x; i++) {
         const cell = new Cell(i, j, this)
         row.push(cell)
       }
+
       cells.push(row)
     }
+
     return cells
   }
 
   initialization() {
     this.context.innerHTML = ''
+
     for (const row of this.cells) {
       const rowHTML = document.createElement('div')
       rowHTML.className = 'row'
+
       for (const cell of row) {
         const cellHTML = cell.initialization()
         if (cell.figure) {
@@ -43,8 +49,10 @@ export default class Board {
         }
         rowHTML.append(cellHTML)
       }
+
       this.context.prepend(rowHTML)
     }
+
     this.show()
   }
 
@@ -66,6 +74,7 @@ export default class Board {
         cell.isPicked = false
       }
     }
+
     this.turnMove = COLORS.white
     this.pickedCell = null
     this.turnMoveImage.src = STRINGS.whiteKingSrc
@@ -74,18 +83,23 @@ export default class Board {
   // method add figures on the board
 
   addFigures() {
-    const splitedPosition =
+    const startPosition =
       this.game.name === STRINGS.chess
-        ? START_POSITION.positionChess.split('/')
-        : START_POSITION.positionCheckers.split('/')
+        ? START_POSITION.positionChess
+        : START_POSITION.positionCheckers
+
+    const rows = startPosition.split('/')
+
     for (let y = 0; y < this.size; y++) {
       for (let x = 0; x < this.size; x++) {
-        const currentFigure = FIGURES[splitedPosition[y][x]]
-        if (currentFigure !== null) {
-          this.cells[y][x].figure = currentFigure.createFigure(this.cells)
-        } else this.cells[y][x].figure = null
+        const currentFigureCode = rows[y][x]
+        const currentFigure = FIGURES[currentFigureCode]
+
+        this.cells[y][x].figure =
+          currentFigure !== null ? currentFigure.createFigure(this.cells) : null
       }
     }
+
     this.game.players.white.startTimer()
   }
 
@@ -180,40 +194,55 @@ export default class Board {
   }
 
   checkWinForChess() {
-    const kings = []
-    for (const row of this.cells) {
-      for (const cell of row) {
-        if (!cell.figure) continue
-        if (cell.figure.type === STRINGS.king) {
-          kings.push(cell.figure)
-        }
-      }
-    }
+    const kings = this.getAllKings()
 
     if (kings.length === 1) {
-      this.showWinModal(kings[0].color)
-      return
+      this.showWinModal(kings[0]?.color)
     }
   }
 
   checkWinForCheckers() {
-    const whiteCheckers = []
-    const blackCheckers = []
+    const [whiteCheckers, blackCheckers] = this.getAllCheckers()
+
+    if (whiteCheckers.length === 0) {
+      this.showWinModal(blackCheckers[0]?.color)
+    } else if (blackCheckers.length === 0) {
+      this.showWinModal(whiteCheckers[0]?.color)
+    }
+  }
+
+  getAllKings() {
+    const kings = []
+
     for (const row of this.cells) {
       for (const cell of row) {
-        if (!cell.figure) continue
-        if (cell.figure.color === COLORS.white) {
-          whiteCheckers.push(cell.figure)
-        } else blackCheckers.push(cell.figure)
+        const { figure } = cell
+
+        if (figure && figure.type === STRINGS.king) {
+          kings.push(figure)
+        }
       }
     }
-    if (whiteCheckers.length < 1) {
-      this.showWinModal(blackCheckers[0].color)
-      return
+
+    return kings
+  }
+
+  getAllCheckers() {
+    const whiteCheckers = []
+    const blackCheckers = []
+
+    for (const row of this.cells) {
+      for (const cell of row) {
+        const { figure } = cell
+
+        if (figure) {
+          figure.color === COLORS.white
+            ? whiteCheckers.push(figure)
+            : blackCheckers.push(figure)
+        }
+      }
     }
-    if (blackCheckers.length < 1) {
-      this.showWinModal(whiteCheckers[0].color)
-      return
-    }
+
+    return [whiteCheckers, blackCheckers]
   }
 }

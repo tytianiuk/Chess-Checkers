@@ -26,28 +26,34 @@ export class King extends Figure {
   }
 
   castle(startCell, endCell) {
-    if (!this.canCastle(startCell, endCell)) return false
-    if (startCell.x - endCell.x < 0) {
-      this.cells[startCell.y][
-        startCell.x + START_POSITION.castleJumpKing
-      ].figure = startCell.figure
-      this.cells[startCell.y][
-        startCell.x + START_POSITION.castleJumpRook
-      ].figure = endCell.figure
-    } else {
-      this.cells[startCell.y][
-        startCell.x - START_POSITION.castleJumpKing
-      ].figure = startCell.figure
-      this.cells[startCell.y][
-        startCell.x - START_POSITION.castleJumpRook
-      ].figure = endCell.figure
+    if (!this.canCastle(startCell, endCell)) {
+      return false
     }
+
+    const direction = startCell.x - endCell.x < 0 ? 1 : -1
+
+    this.moveFigureTo(
+      startCell,
+      startCell.x + direction * START_POSITION.castleJumpKing,
+      startCell.figure,
+    )
+    this.moveFigureTo(
+      startCell,
+      startCell.x + direction * START_POSITION.castleJumpRook,
+      endCell.figure,
+    )
+
     startCell.figure.isFirstMove = false
     endCell.figure = null
     startCell.figure = null
+
     startCell.board.initialization()
     startCell.board.changeTurnMove()
     startCell.board.game.switchPlayer()
+  }
+
+  moveFigureTo(cellFrom, xTo, figure) {
+    this.cells[cellFrom.y][xTo].figure = figure
   }
 
   canCastle(startCell, endCell) {

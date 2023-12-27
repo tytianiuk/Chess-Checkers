@@ -115,24 +115,21 @@ export class Checker extends Figure {
       },
     ]
 
-    for (const direction of directions) {
-      const dx = direction.dx
-      const dy = direction.dy
+    const isWithinBounds = (x, y) =>
+      x >= 0 && x < START_POSITION.size && y >= 0 && y < START_POSITION.size
+
+    return directions.some((direction) => {
+      const { dx, dy } = direction
       const cellForJumpX = cell.x + dx
       const cellForJumpY = cell.y + dy
 
-      if (
-        cellForJumpX >= 0 &&
-        cellForJumpX < START_POSITION.size &&
-        cellForJumpY >= 0 &&
-        cellForJumpY < START_POSITION.size
-      ) {
+      if (isWithinBounds(cellForJumpX, cellForJumpY)) {
         const cellForJump = this.cells[cellForJumpY][cellForJumpX]
-        const canBeat = this.cheakBeat(cell, cellForJump, dx, dy)
-        if (canBeat) return true
+        return this.cheakBeat(cell, cellForJump, dx, dy)
       }
-    }
-    return false
+
+      return false
+    })
   }
 
   performBeat(startCell, endCell) {
