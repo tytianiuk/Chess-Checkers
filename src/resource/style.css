@@ -225,6 +225,14 @@ body {
   width: 640px;
   height: 640px;
   background-color: rgba(155, 73, 73, 0.413);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 72px;
+  font-family: 'Helvetica', sans-serif;
+  color: #ffffff;
 }
 
 .hide {
