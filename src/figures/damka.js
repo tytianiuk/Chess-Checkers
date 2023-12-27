@@ -35,7 +35,7 @@ export class Damka extends Figure {
     const xDirection = endCell.x > startCell.x ? 1 : -1
     const yDirection = endCell.y > startCell.y ? 1 : -1
     const listEnemy = []
-
+    if (!this.isFreeCell(endCell)) return false
     for (let i = 1; i < dx; i++) {
       const currentFigure =
         this.cells[i * yDirection + startCell.y][i * xDirection + startCell.x]
@@ -60,6 +60,6 @@ export class Damka extends Figure {
       return true
     }
 
-    return false
+    return true
   }
 }
