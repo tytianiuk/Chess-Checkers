@@ -49,12 +49,12 @@ export default class Board {
   }
 
   show() {
-    this.context.classList.remove('hide')
+    this.context.classList.remove(STRINGS.hide)
     this.changeSrc()
   }
 
   hide() {
-    this.context.classList.add('hide')
+    this.context.classList.add(STRINGS.hide)
     this.turnMoveImage.src = STRINGS.empty
   }
 
@@ -152,11 +152,11 @@ export default class Board {
         document.querySelectorAll('.transformation-button'),
       )
 
-      transModal.classList.remove('hide')
+      transModal.classList.remove(STRINGS.hide)
 
       transButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-          transModal.classList.add('hide')
+        button.addEventListener(STRINGS.click, () => {
+          transModal.classList.add(STRINGS.hide)
           resolve(button.id)
         })
       })
@@ -168,7 +168,7 @@ export default class Board {
     const winText = document.querySelector('.win-text')
     winText.textContent = `${winColor.toUpperCase()} ${STRINGS.wins}`
     this.game.finish()
-    winModal.classList.remove('hide')
+    winModal.classList.remove(STRINGS.hide)
   }
 
   //win methods

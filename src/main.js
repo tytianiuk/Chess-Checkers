@@ -16,54 +16,54 @@ const pausePanel = document.querySelector('.pause-panel')
 
 var board = null
 
-chess.addEventListener('click', () => {
+chess.addEventListener(STRINGS.click, () => {
   board = new Board(boardContainer, START_POSITION.size, turnMoveImage)
   const game = new Game(STRINGS.chess, board)
   board.game = game
   board.addFigures()
-  panelIcons.classList.add('hide')
+  panelIcons.classList.add(STRINGS.hide)
   board.initialization()
 })
 
-checkers.addEventListener('click', () => {
+checkers.addEventListener(STRINGS.click, () => {
   board = new Board(boardContainer, START_POSITION.size, turnMoveImage)
   const game = new Game(STRINGS.checkers, board)
   board.game = game
   board.addFigures()
-  panelIcons.classList.add('hide')
+  panelIcons.classList.add(STRINGS.hide)
   board.initialization()
 })
 
-pauseButton.addEventListener('click', () => {
+pauseButton.addEventListener(STRINGS.click, () => {
   if (board) {
     if (board.game.isPaused()) {
-      pausePanel.classList.add('hide')
+      pausePanel.classList.add(STRINGS.hide)
       board.game.resume()
     } else {
-      pausePanel.classList.remove('hide')
+      pausePanel.classList.remove(STRINGS.hide)
       board.game.pause()
     }
   }
 })
 
 backButtons.forEach((button) => {
-  button.addEventListener('click', () => {
+  button.addEventListener(STRINGS.click, () => {
     if (board) {
-      winModal.classList.add('hide')
-      pausePanel.classList.add('hide')
+      winModal.classList.add(STRINGS.hide)
+      pausePanel.classList.add(STRINGS.hide)
       board.hide()
       board.game.finish()
       board = null
-      panelIcons.classList.remove('hide')
+      panelIcons.classList.remove(STRINGS.hide)
     }
   })
 })
 
 fillButtons.forEach((button) => {
-  button.addEventListener('click', () => {
+  button.addEventListener(STRINGS.click, () => {
     if (board) {
-      winModal.classList.add('hide')
-      pausePanel.classList.add('hide')
+      winModal.classList.add(STRINGS.hide)
+      pausePanel.classList.add(STRINGS.hide)
       board.game.finish()
       board.clear()
       board.addFigures()

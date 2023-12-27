@@ -16,7 +16,7 @@ export default class Cell {
   initialization() {
     this.HTML = document.createElement('div')
     this.HTML.className = `cell ${this.color} ${this.HTML}`
-    this.HTML.addEventListener('click', (event) => {
+    this.HTML.addEventListener(STRINGS.click, (event) => {
       if (event.altKey) {
         this.isSelected ? this.deselect() : this.select()
         return

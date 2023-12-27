@@ -8,6 +8,8 @@ export const STRINGS = {
   empty: './resource/figures/empty.png',
   selected: 'selected',
   picked: 'picked',
+  click: 'click',
+  hide: 'hide',
   Queen: 'Q',
   queen: 'q',
   Damka: 'D',
