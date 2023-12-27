@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  font-weight: 700;
 }
 
 body {
@@ -19,6 +20,7 @@ body {
   height: 75vh;
   background-color: rgb(72, 72, 72);
   align-content: flex-start;
+
 }
 
 .container-game-icon {
@@ -33,6 +35,8 @@ body {
   width: 300px;
   height: 300px;
   border-radius: 25%;
+
+  border: 10px solid rgb(90, 136, 173);
 }
 
 .game-icon:hover {
@@ -118,22 +122,6 @@ body {
   background-color: rgb(72, 72, 72);
 }
 
-.button {
-  top: 100px;
-  right: 100px;
-
-  width: 200px;
-  height: 80px;
-
-  background-color: rgb(90, 136, 173);
-
-  font-size: 40px;
-  font-family: 'Helvetica', sans-serif;
-
-  color: #ffffff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
 .turn-move {
   width: 50%;
   text-align: center;
@@ -203,7 +191,8 @@ body {
   justify-content: center;
   width: 30%;
   height: 40%;
-  background-color: rgb(227, 228, 211);
+  background-color: rgb(230, 230, 230);
+  border: 10px solid rgb(7, 17, 45);
   border-radius: 20px;
 }
 
@@ -240,4 +229,31 @@ body {
 
 .hide {
   display: none;
+}
+
+.button {
+  top: 100px;
+  right: 100px;
+
+  width: 200px;
+  height: 80px;
+
+  background-color: rgb(90, 136, 173);
+
+  font-size: 40px;
+  font-family: 'Helvetica', sans-serif;
+
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.button:hover {
+  background-color: rgb(70, 116, 153);
+  transform: scale(1.05);
+}
+
+.button:active {
+  background-color: rgb(50, 86, 113);
+  transform: scale(0.95);
 }
