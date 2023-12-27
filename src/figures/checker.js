@@ -145,6 +145,7 @@ export class Checker extends Figure {
       endCell.board.initialization()
       endCell.board.changeTurnMove()
       endCell.board.game.switchPlayer()
+      endCell.board.checkWin()
       return false
     }
     endCell.board.canMultiBeat = endCell
