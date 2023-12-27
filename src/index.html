@@ -1,54 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/src/resource/style.css">
-  <title>Game Launcher</title>
-</head>
-<body>
-  <div class="panel-icons">
-    <span class="header">ОБЕРІТЬ ГРУ</span>
-    <div class="container-game-icon">
-      <img src="resource/icons/chess_icon.png" alt="chess_icon" class="game-icon chess">
-    </div>
-    <div class="container-game-icon">
-      <img src="resource/icons/checkers_icon.jpg" alt="checkers_icon" class="game-icon checkers">
-    </div>
-  </div>
-  <div class="board hide"></div>
-  <div class="panel-button">
-    <button class="button fill">RESTART</button>
-    <img class="turn-move" src="resource/figures/empty.png" alt="Turn move">
-    <button class="button back">BACK</button>
-  </div>
-
-  <div class="timers">
-    <div class="timer" id="black-timer">05:00</div>
-    <button class="button pause">PAUSE</button>
-    <div class="timer" id="white-timer">05:00</div>
-  </div>
-
-  <div class="transformation-modal modal hide">
-    <div class="transformation-buttons">
-      <img class="transformation-button" id="Q" src="resource/figures/white_queen.png">
-      <img class="transformation-button" id="R" src="resource/figures/white_rook.png">
-      <img class="transformation-button" id="B" src="resource/figures/white_bishop.png">
-      <img class="transformation-button" id="N" src="resource/figures/white_knight.png">
-    </div>
-  </div>
-
-  <div class="win-modal modal hide">
-    <div class="win-container">
-      <div class="win-text">WINS</div>
-      <div class="win-buttons">
-        <button class="button fill">RESTART</button>
-        <button class="button back">BACK</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/resource/style.css" />
+    <title>Game Launcher</title>
+  </head>
+  <body>
+    <div class="panel-icons">
+      <span class="header">CHOOSE GAME</span>
+      <div class="container-game-icon">
+        <img
+          src="resource/icons/chess_icon.png"
+          alt="chess_icon"
+          class="game-icon chess"
+        />
+      </div>
+      <div class="container-game-icon">
+        <img
+          src="resource/icons/checkers_icon.jpg"
+          alt="checkers_icon"
+          class="game-icon checkers"
+        />
       </div>
     </div>
-  </div>
-  <div class="pause-panel hide"></div>
-  
-  <script type="module" src="main.js"></script>
-</body>
+    <div class="board hide"></div>
+    <div class="panel-button">
+      <button class="button fill">RESTART</button>
+      <img class="turn-move" src="resource/figures/empty.png" alt="Turn move" />
+      <button class="button back">BACK</button>
+    </div>
+
+    <div class="timers">
+      <div class="timer" id="black-timer">05:00</div>
+      <button class="button pause">PAUSE</button>
+      <div class="timer" id="white-timer">05:00</div>
+    </div>
+
+    <div class="transformation-modal modal hide">
+      <div class="transformation-buttons">
+        <img
+          class="transformation-button"
+          id="Q"
+          src="resource/figures/white_queen.png"
+        />
+        <img
+          class="transformation-button"
+          id="R"
+          src="resource/figures/white_rook.png"
+        />
+        <img
+          class="transformation-button"
+          id="B"
+          src="resource/figures/white_bishop.png"
+        />
+        <img
+          class="transformation-button"
+          id="N"
+          src="resource/figures/white_knight.png"
+        />
+      </div>
+    </div>
+
+    <div class="win-modal modal hide">
+      <div class="win-container">
+        <div class="win-text">WINS</div>
+        <div class="win-buttons">
+          <button class="button fill">RESTART</button>
+          <button class="button back">BACK</button>
+        </div>
+      </div>
+    </div>
+    <div class="pause-panel hide"></div>
+
+    <script type="module" src="main.js"></script>
+  </body>
 </html>
